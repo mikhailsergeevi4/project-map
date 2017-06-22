@@ -10,14 +10,13 @@ function initMap() {
 
   var locations = [
           {title: 'The dam of the City Pond', location: {lat: 56.837688, lng: 60.603895}},
-          {title: 'Museum of the first president of Russia: Yeltsin', location: {lat: 56.844627, lng: 60.591981}},
+          {title: 'Museum of the first president of Russia: Yeltsin', location: {lat: 56.843679, lng:  60.591385}},
           {title: '"Temple on blood". The place where the last Russian emperor was shot.',
                                         location: {lat: 56.844364, lng: 60.60894}},
           {title: 'My school. Which I finished in 2006', location: {lat: 56.838368, lng: 60.600015}},
-          {title: 'Central Stadium. Here will be the Football World Cup 2018.',
-                                        location: {lat: 56.832473, lng: 60.573584}},
-          {title: 'City Park', location: {lat: 56.816807, lng: 60.636986}},
-          {title: 'My Home', location: {lat: 56.795078, lng: 60.626651}}
+          {title: 'Opera and Ballet Theatre', location: {lat: 56.839534, lng:  60.616412}},
+          {title: 'Our Goverment', location: {lat: 56.837491, lng: 60.597531}},
+          {title: 'Central Mall', location: {lat: 56.837526, lng:  60.595846}}
         ];
         var infowindow = new google.maps.InfoWindow();
         var bounds = new google.maps.LatLngBounds();
@@ -35,26 +34,22 @@ function initMap() {
             id: i
           });
           // Push the marker to our array of markers.
+
           markers.push(marker);
           marker.addListener('click', function() {
               populateInfoWindow(this, infowindow);
           });
+
             bounds.extend(markers[i].position);
         }
           // Extend the boundaries of the map for each marker
         map.fitBounds(bounds);
+
 }
+
 
 function populateInfoWindow(marker, infowindow) {
    // Check to make sure the infowindow is not already opened on this marker.
-      if (infowindow.marker != marker) {
-          infowindow.marker = marker;
-          infowindow.setContent('');
-          infowindow.open(map, marker);
-    // Make sure the marker property is cleared if the infowindow is closed.
-          infowindow.addListener('closeclick',function(){
-                infowindow.setMarker = null;
-          });
 
     // Adding StreetView for infowindow
           var streetViewService = new google.maps.StreetViewService();
@@ -62,12 +57,14 @@ function populateInfoWindow(marker, infowindow) {
     // In case the status is OK, which means the pano was found, compute the
     // position of the streetview image, then calculate the heading, then get a
     // panorama from that and set the options
+
           function getStreetView(data, status) {
               if (status == google.maps.StreetViewStatus.OK) {
                   var nearStreetViewLocation = data.location.latLng;
                   var heading = google.maps.geometry.spherical.computeHeading(
                       nearStreetViewLocation, marker.position);
-                  infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+                  infowindow.setContent('<div class="marker-title">' + marker.title +
+                   '</div><div id="pano"></div>');
                   var panoramaOptions = {
                       position: nearStreetViewLocation,
                       pov: {
@@ -81,16 +78,15 @@ function populateInfoWindow(marker, infowindow) {
                   var panorama = new google.maps.StreetViewPanorama(
                       document.getElementById('pano'), panoramaOptions);
               } else {
-                  infowindow.setContent('<div>' + marker.title + '</div>' +
+                  infowindow.setContent('<div class="marker-title">' + marker.title + '</div>' +
                       '<div>No Street View Found</div>');
             }
           }
           // Use streetview service to get the closest streetview image within
-          // 50 meters of the markers position
+          // 40 meters of the markers position
           streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
           // Geocoding adress
 
           // Open the infowindow on the correct marker.
           infowindow.open(map, marker);
-      }
 }
