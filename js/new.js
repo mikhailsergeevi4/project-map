@@ -39,25 +39,44 @@ function initMap() {
 }
 
 function populateInfoWindow(marker, infowindow) {
-  infowindow.setContent('<div class="marker-title">' + marker.title + '</div><div id="pano"></div><div>' + marker.address +'</div>');
+  // Content for InfoWindow
+  infowindow.setContent('<div class="marker-title">' + marker.title +
+   '</div><div id="pano"></div><div>' + marker.address +'</div>');
+  // Adding streetView panorama
+  var streetViewService = new google.maps.StreetViewService();
+  var radius = 40;
+  function getStreetView(data, status) {
+    // Checking status of streetview
+      if (status == google.maps.StreetViewStatus.OK) {
+          var nearStreetViewLocation = data.location.latLng;
+          var heading = google.maps.geometry.spherical.computeHeading(
+              nearStreetViewLocation, marker.position);
+          // Propetries for panorama
+          var panoramaOptions = {
+              position: nearStreetViewLocation,
+              pov: {
+                heading: heading,
+                pitch: 25
+              }
+            };
+          var panorama = new google.maps.StreetViewPanorama(
+              document.getElementById('pano'), panoramaOptions);
+      } else {
+          infowindow.setContent('<div class="marker-title">' + marker.title + '</div>' +
+              '<div>No Street View Found for '+ + marker.address + '</div>');
+    }
+  }
+  // Use streetview service to get the closest streetview image within
+  // 40 meters of the markers position
+  streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+  // Open infowindow
   infowindow.open(map, marker);
-
-  var panorama = new google.maps.StreetViewPanorama(
-      document.getElementById('pano'), panoramaOptions);
-  var panoramaOptions = {
-          position: {lat: 56.837688, lng: 60.603895},
-          pov: {
-            heading: 34,
-            pitch: 25
-          }
-        };
 }
 
 function toggleBounce(marker) {
   if (marker.getAnimation() !== null) {
     marker.setAnimation(null);
   } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
     marker.setAnimation(google.maps.Animation.BOUNCE);
     setTimeout(function(){ marker.setAnimation(null); }, 750);
   }
