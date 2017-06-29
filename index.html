@@ -8,7 +8,7 @@
 <!-- js for nav -->
   <script src="./js/new.js"></script>
 <!-- js library - knockout-3 -->
-  <script src="js/lib/knockout-3.2.0.js"></script>
+  <script src="./js/lib/knockout-3.2.0.js"></script>
 <!-- Bootstrap -->
  <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- Custom Styles -->
@@ -16,8 +16,7 @@
   <link rel="stylesheet" href="./css/resp.css">
 <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Poiret+One" rel="stylesheet">
-<!-- Favicon -->
-<!--  <link rel="shortcut icon" type="image/png" href="img/favicon.ico">-->
+
 </head>
  <body>
 
@@ -29,7 +28,16 @@
         </div>
          <div class="row">
            <div class='col-xs-3'>
-
+             <div id="search-container">
+               <div id="search-nav">
+                 <input id="input" placeholder="Enter your location"
+                    type="input" data-bind="" autocomplete="off">
+                  </input>
+                  <ul data-bind = "foreach: markerList">
+                      <li data-bind="text: title, click:"></li>
+                  </ul>
+            </div>
+        </div>
            </div>
 
 

@@ -9,12 +9,14 @@ var locations = [
         {title: 'Our Goverment', location: {lat: 56.837491, lng: 60.597531}},
         {title: 'Central Mall', location: {lat: 56.837526, lng:  60.595846}}
       ];
+
 function initMap() {
-  var geocoder = new google.maps.Geocoder;
+  // start google map
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat:56.840403, lng: 60.602660},
     zoom: 14
   });
+  // infowindow for markers
   var infowindow = new google.maps.InfoWindow();
   for (var i = 0; i < locations.length; i++) {
     // Get the position from the location array.
@@ -25,9 +27,9 @@ function initMap() {
       animation: google.maps.Animation.DROP,
       position: position,
       title: title,
-      //address: "visit" + getAddress(locations[i].location)
-    });
+      });
     markers.push(marker);
+    // click functions for markers
     marker.addListener('click', function() {
         populateInfoWindow(this, infowindow);
     });
@@ -36,6 +38,19 @@ function initMap() {
       toggleBounce(this);
     });
   }
+  // Making list of locations
+  var Loc = function(data) {
+    this.title = ko.observable(data.title);
+  };
+  var ViewModel = function() {
+    var self = this;
+    this.markerList = ko.observableArray([]);
+    markers.forEach(function(markItem){
+      self.markerList.push( new Loc(markItem) );
+    });
+
+  };
+ko.applyBindings(new ViewModel());
 }
 
 function populateInfoWindow(marker, infowindow) {
@@ -66,13 +81,12 @@ function populateInfoWindow(marker, infowindow) {
               '<div>No Street View Found for '+ + marker.address + '</div>');
     }
   }
-  // Use streetview service to get the closest streetview image within
-  // 40 meters of the markers position
   streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
   // Open infowindow
   infowindow.open(map, marker);
 }
 
+//bouncing onclick markers
 function toggleBounce(marker) {
   if (marker.getAnimation() !== null) {
     marker.setAnimation(null);
@@ -81,34 +95,3 @@ function toggleBounce(marker) {
     setTimeout(function(){ marker.setAnimation(null); }, 750);
   }
 }
-
-/*function getAddress(coord) {
-var geocoder = new google.maps.Geocoder;
-
-  geocoder.geocode({'location': coord}, function(results, status) {
-  if (status == google.maps.GeocoderStatus.OK) {
-    if (results[0]) {
-      return coord;
-    } else {
-    window.alert('No results found');
-    }
-  } else {
-  window.alert('Geocoder failed due to: ' + status);
-  }
-});
-}
-*/
-
-/*function initialize(thing) {
-        var fenway = {lat: 42.345573, lng: -71.098326};
-        var panorama = new google.maps.StreetViewPanorama(
-            document.getElementById('pano'), {
-              position: thing,
-              pov: {
-                heading: 34,
-                pitch: 10
-              }
-            });
-        map.setStreetView(panorama);
-      }
-*/
