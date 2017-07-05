@@ -86,7 +86,7 @@ function populateInfoWindow(marker, infowindow) {
   infowindow.open(map, marker);
 }
 
-//bouncing onclick markers
+// bouncing onclick markers
 function toggleBounce(marker) {
   if (marker.getAnimation() !== null) {
     marker.setAnimation(null);
