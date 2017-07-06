@@ -80,7 +80,7 @@ var ViewModel = function() {
   self.locationClick = function(location) {
     // Set the content of the infoWindow
     var infoContent = '<div class="marker-title">' + location.title() + '</div><div id="pano"></div>'+
-    '<div id=wiki></div>'
+    '<div id=wiki></div>';
 
     infoWindow.setContent(infoContent);
     // Center clicked marker
@@ -121,9 +121,8 @@ var ViewModel = function() {
         articleStr = articleList[i];
         // Add a link to wikipedia
         var url = 'https://ru.wikipedia.org/wiki/'+ articleStr;
-        $('#wiki').append('<a href="'+ url + '"target="_blank">'
-        + 'Open Wikipedia for more info</a>');
-      };
+        $('#wiki').append('<a href="'+ url + '"target="_blank">' + 'Open Wikipedia for more info</a>');
+      }
         clearTimeout(wikiRequestTimeout);
     }
   });
@@ -184,7 +183,7 @@ var ViewModel = function() {
   self.resetFiltering = function() {
       for (var i = 0; i < self.locationList().length; i++) {
         self.locationList()[i].marker().setMap(map);
-      };
+      }
       self.filteredLocationList(self.locationList());
   };
 
@@ -194,7 +193,7 @@ var ViewModel = function() {
     self.setLocationClickFunctions();
     self.filteredLocationList(self.locationList());
   });
-}
+};
 // Starts everything
 ko.applyBindings( new ViewModel() );
 
