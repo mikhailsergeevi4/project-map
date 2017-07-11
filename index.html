@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>My neighborhood map</title>
-<!-- jQuery -->
-  <script src="js/lib/jQuery.min.js"></script>
-<!-- js library - knockout-3 -->
-  <script src="./js/lib/knockout-3.2.0.js"></script>
 <!-- Bootstrap -->
  <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- Custom Styles -->
@@ -22,33 +18,42 @@
 
       <div class="container-fluid">
 
-        <div class="header">
-          <div class="header-title">
+          <header class="header-title">
             <p class="title">My favorite locations in Ekaterinburg</p>
-          </div>
-        </div>
+          </header>
+
 
          <div class="row">
-           <div class='col-xs-3'>
-                 <form id="location-search" class="search-area row" data-bind="submit: filterLocations">
-                   <input type="text" placeholder="Enter your location" id="search-str">
-                   <input type="submit" value="search" class="btn search-btn">
-                   <input type="reset" value="reset" class="btn reset-btn" data-bind="click: resetFiltering">
-                 </form>
-                  <ol class='square' data-bind = "foreach: filteredLocationList">
-                      <li data-bind="text: title, click: $parent.locationClick"></li>
-                  </ol>
-          </div>
 
-           <div class='col-xs-9'>
+             <aside class='col-xs-3 drawer'>
+               <input data-bind="textInput: filter, valueUpdate:'afterkeydown'"
+                autocomplete="off" id="search-str" placeholder="Enter your location here..." >
+
+                <ol class='square' data-bind = "foreach: filteredLocationList">
+                    <li data-bind="text: title, click: $parent.locationClick"></li>
+                </ol>
+
+              </aside>
+
+           <main class='col-xs-9 big'>
              <div id="map"></div>
-           </div>
+          </main>
 
          </div>
       </div>
-      <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC5uNZ0BrOcQA4TcfyuE2VDiocbHxqFIc&v=3&callback=Success" onerror="googleError()">
-      </script>
-      <script src="./js/map.js"></script>
- </div>
+
+
+ <!-- js library - knockout-3 -->
+ <script src="./js/lib/knockout-3.2.0.js"></script>
+ <!-- jQuery -->
+ <script src="js/lib/jQuery.min.js"></script>
+<!-- Google maps API -->
+
+ <!-- Model of locations -->
+ <script src="./js/model.js"></script>
+ <!-- all functions -->
+ <script src="./js/map.js"></script>
+ <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC5uNZ0BrOcQA4TcfyuE2VDiocbHxqFIc&v=3&callback=Success" onerror="googleError()">
+ </script>
  </body>
 </html>
