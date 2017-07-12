@@ -19,7 +19,15 @@
       <div class="container-fluid">
 
           <header class="header-title">
-            <p class="title">My favorite locations in Ekaterinburg</p>
+
+              <p class="title">My favorite locations in Ekaterinburg</p>
+
+              <div id="menu" class="header-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+                </svg>
+              </div>
+
           </header>
 
 
@@ -30,7 +38,7 @@
                 autocomplete="off" id="search-str" placeholder="Enter your location here..." >
 
                 <ol class='square' data-bind = "foreach: filteredLocationList">
-                    <li data-bind="text: title, click: $parent.locationClick"></li>
+                    <li data-bind="text: title, click: clickOnList"></li>
                 </ol>
 
               </aside>

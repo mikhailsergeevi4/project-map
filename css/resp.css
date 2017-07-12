@@ -1,12 +1,39 @@
 @media screen and (max-width:700px) {
   .drawer {
-    display: none;
+    z-index: 10;
+    background-color: #fff;
+    width: 105%;
+    position: absolute;
     -webkit-transform: translate(-100%, 0);
     transform: translate(-100%, 0);
     transition: transform 0.3s ease;
   }
 
 .drawer.open {
-  -webkit-transform: translate(-5%, 0);
-  transform: translate(-5%, 0);
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.big {
+  width: 100%;
+}
+
+  #menu, .header-menu svg {
+  margin-top:10px;
+  width: 50px;
+  fill: #d85353;
+  cursor: pointer;
+  float: right;
+  margin-left:auto;
+}
+
+@media screen and (max-width:605px) {
+  #menu, .header-menu svg {
+    float:left;
+    margin-left:auto;
+    margin-right:auto;
+  }
+.title {
+    margin-bottom: 10px;
+  }
 }

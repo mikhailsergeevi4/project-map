@@ -24,7 +24,6 @@ html, body, main {
   margin-left: 10px;
   font-family: "Architects Daughter", cursive;
   font-size: 2em;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .search-area {
@@ -35,51 +34,18 @@ html, body, main {
   font-family: "Architects Daughter", cursive;
   font-size: 1.5em;
 }
-/* Buttons */
 
-.search-btn{
-  background:#20B2AA;
+.header-inner {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
-.reset-btn {
-  background:#FA8072;
-}
-.btn  {
-  margin-top: 3px;
-  padding-left: 2px;
-  color:#fff;
-  border:none;
-  position:relative;
-  height: 25px;
-  min-width: 45px;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-}
-.btn:hover{
-  background:#fff;
-  color:#1AAB8A;
-}
-.btn:before,.btn:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #1AAB8A;
-  transition:400ms ease all;
-}
-.btn:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.btn:hover:before,.btn:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
+header {
 
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
 /* List */
 
 ol {
@@ -89,6 +55,7 @@ ol {
   margin-left: 10px;
   counter-reset: li;
   list-style: none;
+  cursor: pointer;
   }
 .square li {
   position: relative;
