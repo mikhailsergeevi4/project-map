@@ -44,7 +44,7 @@ function Success() {
             });
           }
         }, this);
-  };
+  }
 
 
 
@@ -72,7 +72,7 @@ function Success() {
         self.url(url);
 
     }).fail(function () {
-      alert('Data could not be retrieved from wiki.')
+      alert('Data could not be retrieved from wiki.');
     });
 
     // Google Maps Marker for this location
@@ -177,5 +177,5 @@ function openDrawer() {
   square.addEventListener('click', function() {
     drawer.classList.remove('open');
   });
-};
+}
 openDrawer();
