@@ -40,7 +40,6 @@
                 <ol class='square' data-bind = "foreach: filteredLocationList">
                     <li data-bind="text: title, click: clickOnList"></li>
                 </ol>
-
               </aside>
 
            <main class='col-xs-9 big'>
@@ -52,16 +51,16 @@
 
 
  <!-- js library - knockout-3 -->
- <script src="./js/lib/knockout-3.2.0.js"></script>
- <!-- jQuery -->
- <script src="js/lib/jQuery.min.js"></script>
+  <script src="./js/lib/knockout-3.2.0.js"></script>
+<!-- jQuery -->
+  <script src="js/lib/jQuery.min.js"></script>
 <!-- Google maps API -->
 
  <!-- Model of locations -->
- <script src="./js/model.js"></script>
+  <script src="./js/model.js"></script>
  <!-- all functions -->
- <script src="./js/map.js"></script>
- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC5uNZ0BrOcQA4TcfyuE2VDiocbHxqFIc&v=3&callback=Success" onerror="googleError()">
- </script>
+  <script src="./js/map.js"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC5uNZ0BrOcQA4TcfyuE2VDiocbHxqFIc&v=3&callback=Success" onerror="googleError()">
+  </script>
  </body>
 </html>
