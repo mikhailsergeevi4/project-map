@@ -36,6 +36,7 @@ function Success() {
           } else {
             return ko.utils.arrayFilter(this.locationList(), function(location) {
               if (location.title.toLowerCase().indexOf(filter) >= 0) {
+                location.marker.setVisible(true);
               return true;
               } else {
                 location.marker.setVisible(false);
